@@ -351,7 +351,7 @@ jsonRegistry.registerSchema('vscode://schemas/workspaceConfig', {
 		'folders': {
 			minItems: 0,
 			uniqueItems: true,
-			description: nls.localize('workspaceConfig.folders.description', "List of folders to be loaded in the workspace."),
+			description: nls.localize('workspaceConfig.folders.description', "List of folders and/or individual files to be loaded in the workspace."),
 			items: {
 				type: 'object',
 				defaultSnippets: [{ body: { path: '$1' } }],
@@ -359,11 +359,11 @@ jsonRegistry.registerSchema('vscode://schemas/workspaceConfig', {
 					properties: {
 						path: {
 							type: 'string',
-							description: nls.localize('workspaceConfig.path.description', "A file path. e.g. `/root/folderA` or `./folderA` for a relative path that will be resolved against the location of the workspace file.")
+							description: nls.localize('workspaceConfig.path.description', "A file or folder path. e.g. `/root/folderA`, `/root/file.txt` or `./folderA` for a relative path that will be resolved against the location of the workspace file.")
 						},
 						name: {
 							type: 'string',
-							description: nls.localize('workspaceConfig.name.description', "An optional name for the folder. ")
+							description: nls.localize('workspaceConfig.name.description', "An optional name for the folder or file. ")
 						}
 					},
 					required: ['path']
@@ -371,11 +371,11 @@ jsonRegistry.registerSchema('vscode://schemas/workspaceConfig', {
 					properties: {
 						uri: {
 							type: 'string',
-							description: nls.localize('workspaceConfig.uri.description', "URI of the folder")
+							description: nls.localize('workspaceConfig.uri.description', "URI of the folder or file")
 						},
 						name: {
 							type: 'string',
-							description: nls.localize('workspaceConfig.name.description', "An optional name for the folder. ")
+							description: nls.localize('workspaceConfig.name.description', "An optional name for the folder or file. ")
 						}
 					},
 					required: ['uri']

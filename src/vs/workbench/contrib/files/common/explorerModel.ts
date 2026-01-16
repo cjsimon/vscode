@@ -32,12 +32,14 @@ export class ExplorerModel implements IDisposable {
 	constructor(
 		private readonly contextService: IWorkspaceContextService,
 		private readonly uriIdentityService: IUriIdentityService,
-		fileService: IFileService,
+		private readonly fileService: IFileService,
 		configService: IConfigurationService,
 		filesConfigService: IFilesConfigurationService,
 	) {
-		const setRoots = () => this._roots = this.contextService.getWorkspace().folders
-			.map(folder => new ExplorerItem(folder.uri, fileService, configService, filesConfigService, undefined, true, false, false, false, folder.name));
+		const setRoots = () => {
+			this._roots = this.contextService.getWorkspace().folders
+				.map(folder => new ExplorerItem(folder.uri, this.fileService, configService, filesConfigService, undefined, true, false, false, false, folder.name));
+		};
 		setRoots();
 
 		this._listener = this.contextService.onDidChangeWorkspaceFolders(() => {
